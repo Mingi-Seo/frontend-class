@@ -2,14 +2,14 @@
 
 	var sumOfNumber = 0;
 
-	fuction sumOfInputNumber()
+	function sumOfInputNumber()
 	{
 		var InputNumber = prompt(sumOfNumber);
 		
 		if (InputNumber == null)
 			return ;
 		
-		sumOfNumber = parseInt(InputNumber);
+		sumOfNumber += parseInt(InputNumber);
 		
 		sumOfInputNumber();
 	}

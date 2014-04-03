@@ -7,7 +7,7 @@
 		phoneNumber = userNumber;
 	}
 	
-	IPhone.prototype = new Phone();
+	IPhone.prototype = new Android();
 	IPhone.prototype.constructor = IPhone;
 	
 	window.IPhone = IPhone;

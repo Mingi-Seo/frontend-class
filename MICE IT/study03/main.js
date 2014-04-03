@@ -1,10 +1,15 @@
 var phone = new person('¿µÈñ', new IPhone('010-1234-5678'));
 var phone2 = new person('Ã¶¼ö', new Android('010-5678-1234'));
 
-console.log(myPhone.color);
-console.log(myPhone.model);
+Android.prototype.sendSMS(phone.name, '¾È³ç? Ã¶¼ö¾ß.');
+Android.prototype.sendSMS(phone2.name, '¾È³ç? ¿µÈñ¾ß.');
+Android.prototype.getSMS(phone);
+Android.prototype.getSMS(phone2);
 
-myPhone.setNumber('010-1234-5678');
-myPhone.call();
 
-window.close();
+/*
+Android.prototype.sendSMS(phone.name, '¾È³ç? Ã¶¼ö¾ß.');
+Android.prototype.sendSMS(phone2.name, '¾È³ç? ¿µÈñ¾ß.');
+Android.prototype.getSMS(phone);
+Android.prototype.getSMS(phone2);
+*/

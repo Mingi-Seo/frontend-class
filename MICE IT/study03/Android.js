@@ -7,21 +7,26 @@
 		phoneNumber = userNumber;
 	}
 
-	Android.prototype.sendSMS = function(toPhone, msg)
+	Android.prototype.sendSMS = function(name, msg)
 	{
-		this.toPhone = toPhone;
+		
+//		this.toPhone = toPhone;
 		this.msg = msg;
 		
-		console.log()
+		if (name == "영희")
+			console.log("[영희]" + name + "에게 '" + msg + "' 메시지를 보냈습니다.");
+		
+		else if (name == "철수")
+			console.log("[철수]" + name + "에게 '" + msg + "' 메시지를 보냈습니다.");
 	}
 	
-	Android.prototype.getSMS = function(fromPhone, msg)
+	Android.prototype.getSMS = function(name)
 	{
-		if (phoneNumber === "")
-			console.log("개통하세요!");
+		if (name == "영희")
+			console.log("[철수]" + name + "에게 '" + msg + "' 메시지를 받았습니다.");
 
-		else
-			console.log("전화를 겁니다!");
+		else if (name == "철수")
+			console.log("[영희]" + name + "에게 '" + msg + "' 메시지를 받았습니다.");
 	};
 	
 	Android.prototype.getNumber = function()
@@ -29,7 +34,8 @@
 		return phoneNumber;
 	};
 	
-	getNumber();
+	
+	Android.prototype.getNumber();
 	
 	window.Android = Android;
 })();

@@ -1,0 +1,24 @@
+<script>
+
+	var staticClass = function(){};
+
+//	var sumOfNumber = 0;
+	staticClass.sumOfNumber = 0;
+	
+	staticClass.sumOfInputNumber = function()
+	{
+		var InputNumber = prompt(staticClass.sumOfNumber);
+		
+		if (InputNumber == null)
+			return ;
+		
+		staticClass.sumOfNumber += parseInt(InputNumber);
+		
+		staticClass.sumOfInputNumber();
+	}
+	
+	staticClass.sumOfInputNumber();
+	
+	console.log(staticClass.sumOfNumber);
+
+</script>

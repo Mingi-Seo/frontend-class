@@ -13,35 +13,59 @@ var wrap = document.getElementById('wrap');
 var str = '';
 var imgs = [];
 
-for(var i=0; i<todayPhoto.length; i++)
+document.getElementById("title").innerHTML = "¿À´ÃÀÇ »çÁø";
+
+for(var i=0; i < todayPhoto.length; i++)
 {
-	imgs.push( '<img src="'+todayPhoto[i].img+'"> ');
+		//	1,3 / 2,4 Â¦À¸·Î ¶ç¿ï ¶§
+		//imgs.push( '<div class = "size"><div><img src="' + todayPhoto[i].img + '"> ' + '<span>' + todayPhoto[i].title + '</span></div>' + '<div><img src="' + todayPhoto[i + 1].img + '"> ' + '<span>' + todayPhoto[i + 1].title + '</span>' + '</div></div>');
+	
+		//	ÇÏ³ª¾¿ ¶ç¿ï ¶§
+		imgs.push( '<div class = "size"><img src="' + todayPhoto[i].img + '"> ' + todayPhoto[i].title + '</div>');
+	
+	//imgs.push('<div class = "size"><img src="' + todayPhoto[i].img + '"> ' + '<span>' + todayPhoto[i].title + '</span></div>' + '<div class = "size2"><img src="' + todayPhoto[i + 1].img + '"> ' + '<span>' + todayPhoto[i + 1].title + '</span>' + '</div>');
 }
 
 var imgs1 = imgs.splice(0,4);
 var img1String = imgs1.join("");
 var img2String = imgs.join("");
 
-wrap.innerHTML = "<div id='d1'>"+img1String+"</div> "
-                 + "<div id='d2' class='hide'>"+img2String+"</div>";
+wrap.innerHTML = "<div class = 'scene'> <div id = 'd1'>" + img1String + "</div> </div> " + "<div class = 'scene'> <div id = 'd2' class = 'hide'>" + img2String + "</div> </div>";
+
+/*
+wrap.innerHTML = "<div id='d1'>" + img1String + "</div> "
+                 + "<div id='d2' class='hide'>" + img2String + "</div>";
+*/
 
 var nextBtn = document.getElementById("nextBtn");
+var preBtn = document.getElementById("preBtn");
 var d1 = document.getElementById("d1");
 var d2 = document.getElementById("d2");
 
 nextBtn.addEventListener("click", next);
+preBtn.addEventListener("click", pre);
 
 function next()
 {
-	if(d1.className==="hide")
-	{
-		d1.className = "";
-		d2.className = "hide";
-	}
+//	if(d1.className==="hide")
+//	{
+//		d1.className = "";
+//		d2.className = "hide";
+//	}
 	
-	else
+//	else
+	if (d2.className === "hide")
 	{
 		d1.className = "hide";
 		d2.className = "";
+	}
+}
+
+function pre()
+{
+	if (d1.className === "hide")
+	{
+		d1.className = "";
+		d2.className = "hide";
 	}
 }

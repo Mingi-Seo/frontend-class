@@ -1,24 +1,27 @@
-<script>
-
-	var staticClass = function(){};
-
-//	var sumOfNumber = 0;
-	staticClass.sumOfNumber = 0;
+<!DOCTYPE html>
+<html>
+	<head></head>
+	<body></body>
+	<script>
+		var staticClass = function(){};
 	
-	staticClass.sumOfInputNumber = function()
-	{
-		var InputNumber = prompt(staticClass.sumOfNumber);
+	//	var sumOfNumber = 0;
+		staticClass.sumOfNumber = 0;
 		
-		if (InputNumber == null)
-			return ;
-		
-		staticClass.sumOfNumber += parseInt(InputNumber);
+		staticClass.sumOfInputNumber = function()
+		{
+			var InputNumber = prompt(staticClass.sumOfNumber);
+			
+			if (InputNumber == null)
+				return ;
+			
+			staticClass.sumOfNumber += parseInt(InputNumber);
+			
+			staticClass.sumOfInputNumber();
+		}
 		
 		staticClass.sumOfInputNumber();
-	}
-	
-	staticClass.sumOfInputNumber();
-	
-	console.log(staticClass.sumOfNumber);
-
-</script>
+		
+		console.log(staticClass.sumOfNumber);
+	</script>
+</html>

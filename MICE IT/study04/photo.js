@@ -13,7 +13,7 @@ var wrap = document.getElementById('wrap');
 var str = '';
 var imgs = [];
 
-document.getElementById("title").innerHTML = "오늘의 사진";
+document.getElementById("title").innerHTML = "오늘의 사진 <br /> <hr>";
 
 for(var i=0; i < todayPhoto.length; i++)
 {

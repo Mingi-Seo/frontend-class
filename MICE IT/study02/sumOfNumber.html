@@ -1,21 +1,24 @@
-<script>
-
-	var sumOfNumber = 0;
-
-	fuction sumOfInputNumber()
-	{
-		var InputNumber = prompt(sumOfNumber);
-		
-		if (InputNumber == null)
-			return ;
-		
-		sumOfNumber = parseInt(InputNumber);
+<!DOCTYPE html>
+<html>
+	<head></head>
+	<body></body>
+	<script>
+		var sumOfNumber = 0;
+	
+		function sumOfInputNumber()
+		{
+			var InputNumber = prompt(sumOfNumber);
+			
+			if (InputNumber == null)
+				return ;
+			
+			sumOfNumber += parseInt(InputNumber);
+			
+			sumOfInputNumber();
+		}
 		
 		sumOfInputNumber();
-	}
-	
-	sumOfInputNumber();
-	
-	console.log(sumOfNumber);
-
-</script>
+		
+		console.log(sumOfNumber);
+	</script>
+</html>

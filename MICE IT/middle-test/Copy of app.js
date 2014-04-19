@@ -40,26 +40,26 @@ function getDom(id){
 	return document.getElementById(id);
 }
 
-function callbackManyNewsAjax(responseText){
+function callbackStudentAjax(responseText){
 
 	// string 을 json 으로 변환
 	// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/parse
-	var manyNewsList = JSON.parse(responseText);
+	var studentList = JSON.parse(responseText);
 	var templateString = getDom('boxTemplate').innerHTML;
 	var parseString = [];
-	var manyNews = '';
+	var student = '';
 
-	for(var i=0; i<manyNewsList.length; i++ ){
-		manyNews = manyNewsList[i];
-		parseString.push( template(templateString, {newsId: manyNews["News"][0].newsId, cateId: manyNews["News"][1].cateId, cpKorName: manyNews["News"][2].cpKorName, title: manyNews["News"][3].title, commentCnt: manyNews["News"][4].commentCnt}  ) );
+	for(var i=0; i<studentList.length; i++ ){
+		student = studentList[i];
+		parseString.push( template(templateString, {name: student[0], github_id:student[1]}  ) );
 	}
 
-	getDom('mArticle').innerHTML = parseString.join("");
+	getDom('container').innerHTML = parseString.join("");
 
 }
 
 function start(){
-	callAjax('manynews.js', callbackManyNewsAjax);
+	callAjax('student.js', callbackStudentAjax);
 }
 
 

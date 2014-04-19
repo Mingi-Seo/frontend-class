@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html>
-	<head></head>
+	<head>
+		<link rel = "stylesheet" type = "text/css" href = "common.min.css">
+	</head>
 	<body>
 	<!-- Daum News look at the CSS (다음 뉴스에 있는 CSS 참고하여 구현) -->
-	<div id = "mArticle" role = "main">
+	<div id = "mArticle" role = "main" style = "margin-left: 10px">
 <!--	<div class = "wrap_timenews"> -->
-			<div class = "wrap_tabtype">
+			<div class = "wrap_tabtype1">
 				<ul class = tab_tit>
 				<!-- News / Entertainment / Sport -->
 					<li class = "fst on">
@@ -26,10 +28,27 @@
 					<!-- News List -->
 						<li class = "fst">
 							<div class = "cont">
-								<a href = "" class = "tit">1</a>
-								<div class = "desc">
-									<a href = "" class = "txt">1.내용</a>									
-								</div>
+								<a href = "http://media.daum.net/v/{{newsId}}" class = "tit">1</a>
+							</div>
+						</li>
+						<li class = "#">
+							<div class = "cont">
+								<a href = "http://media.daum.net/v/{{newsId}}" class = "tit">1</a>
+							</div>
+						</li>
+						<li class = "#">
+							<div class = "cont">
+								<a href = "http://media.daum.net/v/{{newsId}}" class = "tit">1</a>
+							</div>
+						</li>
+						<li class = "#">
+							<div class = "cont">
+								<a href = "http://media.daum.net/v/{{newsId}}" class = "tit">1</a>
+							</div>
+						</li>
+						<li class = "#">
+							<div class = "cont">
+								<a href = "http://media.daum.net/v/{{newsId}}" class = "tit">1</a>
 							</div>
 						</li>
 					</ul>
@@ -40,6 +59,189 @@
 					</a>
 				</div>
 			</div>
+			<!-- 
+			<script type="text/javascript">
+				var params = { 
+					page : (Lego.Util.getHashValue("page") || 1)
+				};
+				params.page = parseInt(params.page);
+				var type = (daum.urlParameter.type || "media");
+				var idx = 0;
+				switch(type){
+					default : case "media" : idx = 0;break;
+					case "sports" : idx = 1;break;
+					case "entertain" : idx = 2;break;
+				}
+				daum.addClassName($$(".wrap_tabtype1 .tab_tit li")[idx],"on");
+				
+				var list = new MediaDaumNewsList({
+					templateName : 'mainnews_list',
+					listWrapper : $('listWrap'),
+					isAppend : true,
+					noHash : true,
+					requestUrl : "/api/service/news/list/important/"+type+".jsonp",
+					params : params,
+					renderFunction : function(data){
+						if(data.totalPage==data.currentPage) {
+							daum.hide($("btnWrap"));
+						}
+					}
+				});
+				
+				daum.addEvent($("moreListBtn"),"click",function(e){
+					daum.stopEvent(e);
+					if(params.page < list.getPagingData().totalPage){
+						params.page = params.page.toInt() + 1;
+						list.request(params,true);
+					}
+				});
+				
+				var newNews = {
+					initialize : function(duration){
+						this.wrap  =$("listWrap");
+						this.ajaxObject = new daum.Ajax();
+						this.beforeData = list.getData();
+						this.duration = duration;
+						this.setInterval(this.duration);
+						this.status = {
+							stop : $("statusStop"),
+							update : $("statusUpdate")
+						};
+						this.statusLock=true;
+						this.view =  new Lego.View.UIElement($$(".list_mixture")[0]);
+						this.view.setTemplate(
+							new Lego.View.UITemplate("mainnews_update")
+						);
+						
+						this.view.bind("render",this.animate.bind(this));
+						this.model  =  new Lego.Model.UIData();
+						this.controller = new Lego.Controller(this.model,this.view);
+						
+						
+						var statusBtn = [$$("a",this.status.stop)[0],$$("a",this.status.update)[0]];
+						statusBtn.each(function(element){
+							daum.addEvent(element,"click",function(e){
+								//업데이트 중지, 시작 - 마우스 클릭
+								daum.stopEvent(e);
+								var target = daum.getElement(e);
+								if(target.className.indexOf("stop")>0){
+									this.stop();
+									this.statusLock = false;
+								}
+								else if(target.className.indexOf("start")>0){
+									this.statusLock = true;
+									this.start();
+								}
+							}.bind(this));
+						}.bind(this));
+				
+						daum.addEvent($('listWrap'),"mouseover",function(e){
+							//업데이트 중지
+							var target = daum.getElement(e);
+								
+							if(target.tagName!="UL"){
+								var li = this.getListElement(target);
+								daum.addClassName(li,"on");
+							}
+							if(!this.statusLock) return;
+							this.stop();
+							
+						}.bind(this));
+						
+						daum.addEvent($('listWrap'),"mouseout",function(e){
+							//업데이트 시작
+							var target = daum.getElement(e);
+				
+							if(target.tagName!="UL"){
+								var li = this.getListElement(target);
+								daum.removeClassName(li,"on");
+							}
+							if(!this.statusLock) return;
+							this.start();
+						}.bind(this));
+						
+					},
+					start : function(){
+						daum.addClassName(this.status.stop,"hide");
+						daum.removeClassName(this.status.update,"hide"); 
+						if(this.statusLock) this.setInterval();
+					},
+					stop : function(){
+						if(this.tid) window.clearInterval(this.tid);
+						this.tid = null;
+						daum.addClassName(this.status.update,"hide");
+						daum.removeClassName(this.status.stop,"hide");
+					},
+					getListElement : function(element){
+						var parent = element;
+						try{
+							while(parent.tagName!="LI"){
+								parent = daum.getParent(parent);
+							}
+						}catch(e){console.log(e);}
+						return parent;
+					},
+					updateTime : function(){
+						$$(".list_mixture li .ico_time").each(function(element,i){
+							element.innerHTML = Lego.Util.whenWritten(element.id);
+						});
+						
+						$$(".section_realtime .list_mixture li").each(function(element,i){
+							var liClassName = (i==0) ? "fst" : "";
+							element.setAttribute("class",liClassName);
+						});
+					},
+					
+					setInterval : function(){
+						this.tid = daum.Function.interval(function(){
+							this.updateTime();
+							this.requestNewList()
+						}.bind(this),this.duration);
+					},
+					
+					requestNewList : function(){
+						if(this.beforeData.simpleNews){
+							this.lastNewsId = this.beforeData.simpleNews[0].newsId;
+						}
+						var options = {
+							method : "get",
+							encoding: "utf-8", 
+							onsuccess : function(r){this.checkNewsList(r);}.bind(this)
+						};
+						if(this.lastNewsId) {
+							options.paramString = "newsId=" + this.lastNewsId;
+						}
+						else{
+							return false;
+						}
+						this.ajaxObject.request(list.getRequestUrl(),options);
+					},
+					
+					checkNewsList : function(r){
+						this.beforeData = daum.Ajax.jsonToObject(r.responseText);
+						if(this.beforeData.simpleNews){
+							if(this.beforeData.simpleNews.length>1) {
+								this.render(this.beforeData);
+							}
+						}
+					},
+					
+					render : function(data){
+						this.model.setData(data);
+						$$(".list_mixture li").each(function(el){
+							daum.removeClassName(el,"fst");
+						});
+						this.controller.insertBefore($$(".list_mixture li")[0]);
+					},
+					animate : function(el){
+					}
+				};
+				var interval = 10000;
+				newNews.initialize(interval);
+			</script>
+			-->
 	</div>
 	</body>
+	<script type="text/javascript" src = "manynews.js"></script>
+	<script type="text/javascript" src = "main.js"></script>
 </html>

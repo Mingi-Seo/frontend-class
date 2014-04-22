@@ -1,3 +1,3 @@
 var manyNews = new Manynews();
 
-manyNews.setElementByLiTag();
+manyNews.start();

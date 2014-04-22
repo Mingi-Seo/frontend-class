@@ -1,65 +1,69 @@
 <!DOCTYPE html>
 <html>
 	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 		<link rel = "stylesheet" type = "text/css" href = "common.min.css">
 	</head>
+	<style type="text/css">
+
+	</style>
 	<body>
-	<!-- Daum News look at the CSS (´ÙÀ½ ´º½º¿¡ ÀÖ´Â CSS Âü°íÇÏ¿© ±¸Çö) -->
+	<!-- Daum News look at the CSS (ë‹¤ìŒ ë‰´ìŠ¤ì— ìˆëŠ” CSS ì°¸ê³ í•˜ì—¬ êµ¬í˜„) -->
 	<div id = "mArticle" role = "main" style = "margin-left: 10px">
 <!--	<div class = "wrap_timenews"> -->
 			<div class = "wrap_tabtype1">
 				<ul class = tab_tit>
 				<!-- News / Entertainment / Sport -->
 					<li class = "fst on">
-						<a href = "/mainnews/" class = "tab_link">´º½º</a>
+						<a href = "/mainnews/" class = "tab_link">ë‰´ìŠ¤</a>
 					</li>
 					<li>
-						<a href = "/mainnews/?type=entertain" class = "tab_link">¿¬¿¹</a>
+						<a href = "/mainnews/?type=entertain" class = "tab_link">ì—°ì˜ˆ</a>
 					</li>
 					<li>
-						<a href = "/mainnews/?type=sports" class = "tab_link">½ºÆ÷Ã÷</a>
+						<a href = "/mainnews/?type=sports" class = "tab_link">ìŠ¤í¬ì¸ </a>
 					</li>
 				</ul>
 			</div>
 <!-- 	</div> -->
 			<div class = "section_realtime">
 				<div id = "listWrap">
-					<ul class = "list_mixture">
+					<ul id = "newsList" class = "list_mixture">
 					<!-- News List -->
 						<li class = "fst">
-							<div class = "cont">
-								<a href = "http://media.daum.net/v/{{newsId}}" class = "tit">1</a>
+							<div id = "news0" class = "cont">
+								<a href = "http://media.daum.net/v/{{newsId}}" class = "tit">news0</a>
 							</div>
 						</li>
 						<li class = "#">
-							<div class = "cont">
-								<a href = "http://media.daum.net/v/{{newsId}}" class = "tit">1</a>
+							<div id = "news1" class = "cont">
+								<a href = "http://media.daum.net/v/{{newsId}}" class = "tit">news1</a>
 							</div>
 						</li>
 						<li class = "#">
-							<div class = "cont">
-								<a href = "http://media.daum.net/v/{{newsId}}" class = "tit">1</a>
+							<div id = "news2" class = "cont">
+								<a href = "http://media.daum.net/v/{{newsId}}" class = "tit">news2</a>
 							</div>
 						</li>
 						<li class = "#">
-							<div class = "cont">
-								<a href = "http://media.daum.net/v/{{newsId}}" class = "tit">1</a>
+							<div id = "news3" class = "cont">
+								<a href = "http://media.daum.net/v/{{newsId}}" class = "tit">news3</a>
 							</div>
 						</li>
 						<li class = "#">
-							<div class = "cont">
-								<a href = "http://media.daum.net/v/{{newsId}}" class = "tit">1</a>
+							<div id = "news4" class = "cont">
+								<a href = "http://media.daum.net/v/{{newsId}}" class = "tit">news4</a>
 							</div>
 						</li>
 					</ul>
 				</div>
 				<div class = "fold_news fold_close" id = "btnWrap" style = "margin-bottom: 20px;">
 					<a href = "#" class = "link_fold" id = "moreLisBtn">
-						<span class = "ico_news">´õº¸±â</span>
+						<span class = "ico_news">ë”ë³´ê¸°</span>
 					</a>
 				</div>
 			</div>
-			<!-- 
+			<!--
 			<script type="text/javascript">
 				var params = { 
 					page : (Lego.Util.getHashValue("page") || 1)
@@ -117,11 +121,10 @@
 						this.model  =  new Lego.Model.UIData();
 						this.controller = new Lego.Controller(this.model,this.view);
 						
-						
 						var statusBtn = [$$("a",this.status.stop)[0],$$("a",this.status.update)[0]];
 						statusBtn.each(function(element){
 							daum.addEvent(element,"click",function(e){
-								//¾÷µ¥ÀÌÆ® ÁßÁö, ½ÃÀÛ - ¸¶¿ì½º Å¬¸¯
+								//ì—…ë°ì´íŠ¸ ì¤‘ì§€, ì‹œì‘ - ë§ˆìš°ìŠ¤ í´ë¦­
 								daum.stopEvent(e);
 								var target = daum.getElement(e);
 								if(target.className.indexOf("stop")>0){
@@ -136,7 +139,7 @@
 						}.bind(this));
 				
 						daum.addEvent($('listWrap'),"mouseover",function(e){
-							//¾÷µ¥ÀÌÆ® ÁßÁö
+							//ì—…ë°ì´íŠ¸ ì¤‘ì§€
 							var target = daum.getElement(e);
 								
 							if(target.tagName!="UL"){
@@ -149,7 +152,7 @@
 						}.bind(this));
 						
 						daum.addEvent($('listWrap'),"mouseout",function(e){
-							//¾÷µ¥ÀÌÆ® ½ÃÀÛ
+							//ì—…ë°ì´íŠ¸ ì‹œì‘
 							var target = daum.getElement(e);
 				
 							if(target.tagName!="UL"){
@@ -239,7 +242,7 @@
 				var interval = 10000;
 				newNews.initialize(interval);
 			</script>
-			-->
+		-->
 	</div>
 	</body>
 	<script type="text/javascript" src = "manynews.js"></script>

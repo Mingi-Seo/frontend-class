@@ -1,4 +1,4 @@
-//«‘ºˆº±æ
+//Ìï®ÏàòÏÑ†Ïñ∏
 
 /**
 	https://gist.github.com/tkissing/1347239
@@ -24,15 +24,53 @@ var template  = function(a,b) { // a: template string, b: Object or Array with v
 	https://github.com/niceaji/javascript-study/blob/gh-pages/doc/ajax.md
 */
 function callAjax(url, callback){
-	var xmlhttp;
+	var xmlhttp = null;
+
+	if (window.XMLHttpRequest)
+	{
+		try
+		{
+			xmlhttp = new XMLHttpRequest();
+		}
+
+		catch(e)
+		{
+			xmlhttp = null;
+		}
+	}
+
+	else if (window.ActiveXObject)
+	{
+		try
+		{
+			xmlhttp = new ActiveXObject("Msxml2.XMLHTTP");
+		}
+		
+		catch(e)
+		{
+			try
+			{
+				xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+			}
+
+			catch(e)
+			{
+				xmlhttp = null;
+			}
+		}
+	}
+
 	// compatible with IE7+, Firefox, Chrome, Opera, Safari
-	xmlhttp = new XMLHttpRequest();
+//	xmlhttp = new XMLHttpRequest();
 	xmlhttp.onreadystatechange = function(){
 		if (xmlhttp.readyState == 4 && xmlhttp.status == 200){
 			callback(xmlhttp.responseText);
 		}
 	}
 	xmlhttp.open("GET", url, true);
+
+	console.log(url);
+
 	xmlhttp.send();
 }
 
@@ -40,28 +78,28 @@ function getDom(id){
 	return document.getElementById(id);
 }
 
-function callbackManyNewsAjax(responseText){
+function callbackStudentAjax(responseText){
 
-	// string ¿ª json ¿∏∑Œ ∫Ø»Ø
+	// string ÏùÑ json ÏúºÎ°ú Î≥ÄÌôò
 	// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/parse
-	var manyNewsList = JSON.parse(responseText);
+	var newsList = JSON.parse(responseText);
 	var templateString = getDom('boxTemplate').innerHTML;
 	var parseString = [];
-	var manyNews = '';
+	var student = '';
 
-	for(var i=0; i<manyNewsList.length; i++ ){
-		manyNews = manyNewsList[i];
-		parseString.push( template(templateString, {newsId: manyNews["News"][0].newsId, cateId: manyNews["News"][1].cateId, cpKorName: manyNews["News"][2].cpKorName, title: manyNews["News"][3].title, commentCnt: manyNews["News"][4].commentCnt}  ) );
+	for(var i=0; i<studentList.length; i++ ){
+		student = studentList[i];
+		parseString.push( template(templateString, {name: student[0], github_id:student[1]}  ) );
 	}
 
-	getDom('mArticle').innerHTML = parseString.join("");
+	getDom('container').innerHTML = parseString.join("");
 
 }
 
 function start(){
-	callAjax('manynews.js', callbackManyNewsAjax);
+	callAjax('newsdata.js', callbackStudentAjax);
 }
 
 
-//Ω√¿€ 
+//ÏãúÏûë 
 start();

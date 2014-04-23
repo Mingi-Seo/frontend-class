@@ -91,10 +91,10 @@ function initList(newsData, listCount)
 
 function clickNewsTab()
 {
-	document.getElementById("news").className = "fst on";
-	document.getElementById("enter").className = "";
-	document.getElementById("sports").className = "";
-	document.getElementById("btnWrap").className = "fold_news fold_close";
+	getDom("news").className = "fst on";
+	getDom("enter").className = "";
+	getDom("sports").className = "";
+	getDom("btnWrap").className = "fold_news fold_close";
 
 	flag = 1;
 
@@ -103,10 +103,10 @@ function clickNewsTab()
 
 function clickEnterTab()
 {
-	document.getElementById("news").className = "fst";
-	document.getElementById("enter").className = "on";
-	document.getElementById("sports").className = "";
-	document.getElementById("btnWrap").className = "fold_news fold_close";
+	getDom("news").className = "fst";
+	getDom("enter").className = "on";
+	getDom("sports").className = "";
+	getDom("btnWrap").className = "fold_news fold_close";
 
 	flag = 2;
 
@@ -115,10 +115,10 @@ function clickEnterTab()
 
 function clickSportsTab()
 {
-	document.getElementById("news").className = "fst";
-	document.getElementById("enter").className = "";
-	document.getElementById("sports").className = "on";
-	document.getElementById("btnWrap").className = "fold_news fold_close";
+	getDom("news").className = "fst";
+	getDom("enter").className = "";
+	getDom("sports").className = "on";
+	getDom("btnWrap").className = "fold_news fold_close";
 
 	flag = 3;
 
@@ -146,7 +146,7 @@ function moreBtn()
 				break;
 	}
 
-	document.getElementById("btnWrap").className = "hide";
+	getDom("btnWrap").className = "hide";
 
 	initList(newsData, newsData.length);
 };

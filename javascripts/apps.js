@@ -1,6 +1,6 @@
 var jsonData = "";
 var flag = "";
-const defaultCount = 5;
+var defaultCount = 5;
 
 //함수선언
 

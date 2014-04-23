@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+	<html>
+		<head>
+			<meta charset='utf-8' />
+			<meta http-equiv="X-UA-Compatible" content="chrome=1" />
+			<meta name="description" content="Frontend-Class : Middle-Test" />
+			<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+			<link rel="stylesheet" type="text/css" href="common.min.css">
+			<style type="text/css">
+				.hide {display: none;}
+			</style>
+			<script type="text/javascript" src="newsdata.js"></script>
+			<script type="text/javascript" src="apps.js"></script>
+			<script type="text/template" id="boxTemplate">
+				<li class="">
+					<div class="cont">
+						<a href="http://media.daum.net/v/{{newsId}}" class="tit" target="_blank">{{title}}</a>
+					</div>
+				</li>
+			</script>
+			<title>Frontend-Class</title>
+		</head>
+		<body>
+			<!-- Daum News look at the CSS (다음 뉴스에 있는 CSS 참고하여 구현) -->
+			<div id="mArticle" role="main" style="margin-left: 10px">
+				<div class="wrap_tabtype1">
+					<ul class=tab_tit>
+						<!-- News / Entertainment / Sport -->
+						<li id="news" class="fst on">
+							<a href="#" class="tab_link" onclick="clickNewsTab();">뉴스</a>
+						</li>
+						<li id="enter">
+							<a href="#" class="tab_link" onclick="clickEnterTab();">연예</a>
+						</li>
+						<li id="sports">
+							<a href="#" class="tab_link" onclick="clickSportsTab();">스포츠</a>
+						</li>
+					</ul>
+				</div>
+				<div class="section_realtime">
+					<div id="listWrap">
+					<!-- News List -->
+						<ul id="newsList" class="list_mixture"></ul>
+					</div>
+					<div class="fold_news fold_close" id="btnWrap" style="margin-bottom: 20px;" onclick="moreBtn();">
+						<a href="#" class="link_fold" id="moreListBtn">
+							<span class="ico_news">더보기</span>
+						</a>
+					</div>
+				</div>
+			</div>
+		</body>
+	</html>

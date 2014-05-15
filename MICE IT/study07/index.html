@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<link rel="stylesheet" type="text/css" href="common.min.css">
+	</head>
+	<style type="text/css">
+		.hide {display: none;}
+	</style>
+	<script type="text/template" id="boxTemplate">
+		<li class="">
+			<div class="cont">
+				<a href="{{link}}" class="tit" target="_blank">{{title}}</a>
+			</div>
+		</li>
+	</script>
+	<body>
+	<!-- Daum News look at the CSS (다음 뉴스에 있는 CSS 참고하여 구현) -->
+		<div id="daumHead">
+			<form id="daumSearch" class="sform_comm" name="search">
+				<fieldset class="fld_inside">
+					<legend class="screen_out">검색어 입력폼</legend>
+					<div class="box_searchbar">
+						<input type="text" class="tf_keyword bg_on" id="queryText" name="q" value title="검색어 입력" autocomplete="off" spellcheck="false">
+						<button type="submit" id="daumBtnSearch" class="ico_search btn_search">
+							<span class="ir_wa">검색</span>
+						</button>
+					</div>
+				</fieldset>
+				<div class="suggestBox box_sub" style="display: none;">
+					<div class="baseBox bg"></div>
+				</div>
+			</form>
+		</div>
+		<div id="mArticle" role="main" style="margin-left: 10px">
+			<div class="wrap_tabtype1">
+				<ul class=tab_tit>
+				<!-- News / Entertainment / Sport -->
+					<li id="news" class="fst on">
+						<a href="#" class="tab_link" onclick="clickNewsTab();">뉴스</a>
+					</li>
+				</ul>
+			</div>
+			<div class="section_realtime">
+				<div id="listWrap">
+					<!-- News List -->
+					<ul id="newsList" class="list_mixture">
+					</ul>
+				</div>
+				<div class="fold_news fold_close" id="btnWrap" style="margin-bottom: 20px;" onclick="moreBtn();">
+					<a href="#" class="link_fold" id="moreListBtn">
+						<span class="ico_news">더보기</span>
+					</a>
+				</div>
+			</div>
+		</div>
+		<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+		<script src="http://code.jquery.com/jquery-latest.js"></script>
+		<script type="text/javascript" src="apps.js"></script>
+	</body>
+</html>

@@ -119,11 +119,6 @@ function moreBtn()
 		getDom("btnWrap").className = "hide";
 };
 
-function getNewsData()
-{
-	return jsonData;
-};
-
 function getDom(id)
 {
 	return document.getElementById(id);
